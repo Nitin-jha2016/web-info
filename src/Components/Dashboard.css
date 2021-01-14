@@ -1,0 +1,91 @@
+
+.dashboard{
+    /* background-color: red; */
+    height: 100vh;
+}
+
+.dashboard h2{
+    text-align: left;
+    color: #fff;
+    font-weight: 700;
+    /* padding-top: 50px;
+    padding-bottom: 30px; */
+}
+
+.table-header{
+    padding: 40px 0px;
+    /* background-color: red; */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.table{
+    color: #fff;
+    /* background-color: red; */
+}
+
+.table tbody tr:hover{
+    color: #fff;
+}
+
+.search-con{
+    width: 300px;
+    height: 30px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.input-group-text{
+    height: 40px;
+}
+
+.search-con input{
+    border: 1px solid black;
+    border-right: none;
+    padding: 0px 10px;
+    background: rgba(256,256,256,.2);
+}
+
+
+
+.search-con .input-group-text{
+    border: 1px solid black;
+}
+
+.input-group-prepend{
+   border: none;
+   /* height: 40px; */
+}
+
+.mydatatable{
+    margin-top: 40px;
+}
+
+.table-container{
+    margin-top: 25px;
+    /* padding: 50px; */
+}
+
+.fYvZuV{
+    font-weight: 700;
+}
+
+.btn-primary{
+    position: relative;
+}
+
+.alert-danger{
+    position: absolute;
+    z-index: 100;
+}
+
+.badge{
+    color: black;
+    background-color: yellow;
+}
+
+.btn-danger{
+    float: right;
+    width: 130px;
+}
