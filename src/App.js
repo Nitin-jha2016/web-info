@@ -3,14 +3,24 @@ import "./App.css";
 import Dashboard from "./Components/Dashboard";
 import Login from "./Components/Login";
 import queryString from "query-string";
-import { createContext, useContext, useState } from "react";
-import axios from "axios";
+import { createContext, useState } from "react";
 
 export const MyContext = createContext();
 
-let date = new Date();
 
 function App() {
+
+
+  React.useEffect(()=>{
+    const tk = localStorage.getItem("token")
+    console.log('Founded Tpken',tk);
+    if(tk){
+      settoken(tk);
+      getData(tk)
+    }
+  },[])
+
+
   const [token, settoken] = useState(null);
 
   const handleLogIn = () => {
@@ -33,34 +43,38 @@ function App() {
       .then((res) => {
         console.log(res.data[0], token);
         settoken(res.data[0].Token);
+        localStorage.setItem('token',res.data[0].Token)
 
         console.log("token", token);
         getData(res.data[0].Token);
-      }).catch(err =>{
+      })
+      .catch((err) => {
         console.log(err);
       });
   };
 
   const logOut = () => {
     settoken(null);
+    localStorage.clear()
   };
 
   const getData = (token) => {
-    axios({
-      method: "post",
-      url: "https://webinfo.roomdekho.online/GetDbData",
-      headers: {
-        TokenAuth: token,
-        "Content-Type": "application/x-www-form-urlencoded",
-      },
-    })
-      .then(function (res) {
-        console.log(res.data.data[0]);
-        setdata(res.data.data);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+  var requestOptions = {
+    method: "post",
+    // url: "https://cors-anywhere.herokuapp.com/https://webinfo.roomdekho.online/GetDbData",
+    headers: {
+      Authorization: token,
+    },
+  };
+
+
+   fetch('https://cors-anywhere.herokuapp.com/https://webinfo.roomdekho.online/GetDbData',requestOptions).then(res =>{
+     return res.json()
+   }).then(data=>{
+     setdata(data.data)
+    //  console.log(data.data);
+   })
+
   };
 
   const filterRecords = () => {};
@@ -70,7 +84,6 @@ function App() {
   const [username, setusername] = useState("");
   const [password, setpassword] = useState("");
   const [isloading, setisloading] = useState(false);
-  const [isloggedIn, setisloggedIn] = useState(true);
   const [isalertOpen, setisalertOpen] = useState(false);
 
   const [data, setdata] = useState([]);
@@ -81,10 +94,10 @@ function App() {
   React.useEffect(() => {
     data.forEach((item) => {
       if (item.SSl_Date) {
-        let mydate = new Date()
-        let currentDateString = mydate.toISOString().slice(0,10);
-        
-        let currentDate = new Date(currentDateString).getTime()
+        let mydate = new Date();
+        let currentDateString = mydate.toISOString().slice(0, 10);
+
+        let currentDate = new Date(currentDateString).getTime();
         console.log(currentDate);
         // let currentDate = new Date().getTime();
         console.log("Curreent Date", currentDate);

@@ -100,7 +100,6 @@ function Dashboard() {
 
   return (
     <div className="container table-container">
-      {console.log(ssl)}
       {ssl.length? (
         <button
           type="button"

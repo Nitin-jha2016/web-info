@@ -15,7 +15,7 @@ function Login() {
              {/* <div className="input-group"> */}
              <MdLock className="login-icon"/>
              <input type="text" class="form-control" placeholder="Username" value={username} onChange={(e)=> setusername(e.target.value)}></input>
-             <input type="text" class="form-control" placeholder="Password"  value={password} onChange={(e)=> setpassword(e.target.value)}></input>
+             <input type="password" class="form-control" placeholder="Password"  value={password} onChange={(e)=> setpassword(e.target.value)}></input>
              <button className="btn btn-light login-btn" onClick={()=> handleLogIn()}>Log In</button>
              {/* </div> */}
         </div>
